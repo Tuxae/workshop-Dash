@@ -1,8 +1,8 @@
 from sklearn.metrics import classification_report
 from sklearn.preprocessing import StandardScaler
 
-from dash_app.classif_module.data_prep import DataPrep
-from dash_app.classif_module.svc_model import SVCModel
+from classif_module.data_prep import DataPrep
+from classif_module.svc_model import SVCModel
 
 standardizer = StandardScaler()
 

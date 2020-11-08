@@ -133,3 +133,5 @@ dmypy.json
 venv
 
 /.idea
+
+.DS_Store
