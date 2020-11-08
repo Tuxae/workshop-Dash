@@ -8,6 +8,7 @@ from sklearn.preprocessing import (
     MinMaxScaler,
     MaxAbsScaler,
     Normalizer,
+    LabelEncoder,
 )
 
 Scaler = Union[StandardScaler, RobustScaler, MinMaxScaler, MaxAbsScaler, Normalizer]
@@ -21,8 +22,19 @@ class DataPrep:
     def get_dataframe(self) -> pd.DataFrame:
         return pd.read_csv(self.source, sep=self.sep)
 
-    def get_train_test(self) -> Tuple[pd.DataFrame, pd.DataFrame, pd.Series, pd.Series]:
+    def convert_target(self) -> pd.DataFrame:
+        bins = (2, 6, 8)
+        group_names = ["bad", "good"]
         dataframe = self.get_dataframe()
+        dataframe["quality"] = pd.cut(
+            dataframe["quality"], bins=bins, labels=group_names
+        )
+        label_quality = LabelEncoder()
+        dataframe["quality"] = label_quality.fit_transform(dataframe["quality"])
+        return dataframe
+
+    def get_train_test(self) -> Tuple[pd.DataFrame, pd.DataFrame, pd.Series, pd.Series]:
+        dataframe = self.convert_target()
         return train_test_split(
             dataframe.drop("quality", axis=1),
             dataframe["quality"],
