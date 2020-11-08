@@ -2,16 +2,7 @@ from typing import Tuple, Union
 
 import pandas as pd
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import (
-    StandardScaler,
-    RobustScaler,
-    MinMaxScaler,
-    MaxAbsScaler,
-    Normalizer,
-    LabelEncoder,
-)
-
-Scaler = Union[StandardScaler, RobustScaler, MinMaxScaler, MaxAbsScaler, Normalizer]
+from sklearn.preprocessing import LabelEncoder
 
 
 class DataPrep:
@@ -41,11 +32,3 @@ class DataPrep:
             test_size=0.3,
             random_state=0,
         )
-
-    def get_standardized_data(
-        self, standardizer: Scaler
-    ) -> Tuple[pd.DataFrame, pd.DataFrame, pd.Series, pd.Series]:
-        X_train, X_test, y_train, y_test = self.get_train_test()
-        X_train = standardizer.fit_transform(X_train)
-        X_test = standardizer.fit_transform(X_test)
-        return X_train, X_test, y_train, y_test

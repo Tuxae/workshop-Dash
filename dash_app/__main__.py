@@ -7,6 +7,9 @@ from dash.dependencies import Input, Output
 import dash_app.utils.config as cfg
 from dash_app.homepage_app.homepage import Homepage
 
+# ------------------------------------------------------------------------------
+# Instantiate the app
+
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.SOLAR])
 app.config.suppress_callback_exceptions = True
 app.title = "Internal Workshop Tuxae"
