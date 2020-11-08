@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Tuple
 
 import dash_bootstrap_components as dbc
 import dash_html_components as html
@@ -8,6 +8,8 @@ import pandas as pd
 import plotly.graph_objs as go
 import matplotlib.pyplot as plt
 import seaborn as sns
+from matplotlib.figure import Figure
+from matplotlib.axes import Axes
 
 from dash_app.utils.navbar import Navbar
 
@@ -30,7 +32,7 @@ def plot_density(dataframe: pd.DataFrame, col: str) -> go.Figure:
     return fig
 
 
-def plot_correlation_matrix(dataframe: pd.DataFrame):
+def plot_correlation_matrix(dataframe: pd.DataFrame) -> Tuple[Figure, Axes]:
     correlations = dataframe.corr()
     fig, ax = plt.subplots(figsize=(10, 10))
     colormap = sns.diverging_palette(220, 10, as_cmap=True)

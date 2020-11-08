@@ -24,7 +24,7 @@ print("y_train shape: {}".format(y_train.shape))
 print("X_test shape: {}".format(X_test.shape))
 print("y_test shape: {}".format(y_test.shape))
 
-svc = SVCModel(1.3, 1.3, 'rbf')
+svc = SVCModel(1.3, 1.3, "rbf")
 svc.fit(X_train, y_train)
 predictions = svc.predict(X_test)
 
