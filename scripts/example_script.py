@@ -4,6 +4,7 @@ from sklearn.preprocessing import StandardScaler
 from classif_module.data_prep import DataPrep
 from classif_module.standardizer import Standardizer
 from classif_module.svc_model import SVCModel
+# from dash_app.exploration_app.exploration import plot_correlation_matrix
 from dash_app.exploration_app.exploration import plot_correlation_matrix
 
 standardizer = StandardScaler()

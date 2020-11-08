@@ -47,21 +47,24 @@ body = dbc.Container(
                     id="title",
                     style={"display": "flex"},
                 ),
-                html.A([html.Div(
+                html.A(
                     [
-                        html.Img(
-                            src="../assets/dash-logo.png",
-                            style={
-                                "height": "70px",
-                                "width": "auto",
-                                "margin-top": "19px",
-                            },
+                        html.Div(
+                            [
+                                html.Img(
+                                    src="../assets/dash-logo.png",
+                                    style={
+                                        "height": "70px",
+                                        "width": "auto",
+                                        "margin-top": "19px",
+                                    },
+                                )
+                            ],
+                            className="one-third column",
                         )
                     ],
-                    className="one-third column",
-                )],
-                href='https://plotly.com/dash/'
-                )
+                    href="https://plotly.com/dash/",
+                ),
             ],
             id="header",
             className="row flex-display",

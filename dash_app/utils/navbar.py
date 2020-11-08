@@ -49,6 +49,5 @@ def Navbar():
         color="dark",
         dark=True,
         className="mb-4",
-        sticky="top",
     )
     return navbar
