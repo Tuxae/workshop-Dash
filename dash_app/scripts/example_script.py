@@ -1,6 +1,8 @@
+from sklearn.metrics import classification_report
 from sklearn.preprocessing import StandardScaler
 
 from dash_app.classif_module.data_prep import DataPrep
+from dash_app.classif_module.svc_model import SVCModel
 
 standardizer = StandardScaler()
 
@@ -14,9 +16,8 @@ print("y_train shape: {}".format(y_train.shape))
 print("X_test shape: {}".format(X_test.shape))
 print("y_test shape: {}".format(y_test.shape))
 
-df = DataPrep(
-    "http://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-red.csv",
-    ";",
-).convert_target()
+svc = SVCModel(1.3, 1.3, 'rbf')
+svc.fit(X_train, y_train)
+predictions = svc.predict(X_test)
 
-print(df)
+print(classification_report(y_test, predictions))
