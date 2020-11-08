@@ -1,7 +1,7 @@
 import dash_bootstrap_components as dbc
 import dash_html_components as html
 
-from dash_app.navbar import Navbar
+from dash_app.utils.navbar import Navbar
 
 nav = Navbar()
 
@@ -12,7 +12,7 @@ body = dbc.Container(
                 html.Div(
                     [
                         html.Img(
-                            src="assets/Logo_Tuxae.png",
+                            src="../assets/Logo_Tuxae.png",
                             id="sncf-image",
                             style={
                                 "height": "100px",
