@@ -31,7 +31,7 @@ def Navbar():
                         align="center",
                         no_gutters=True,
                     ),
-                    href="/home",
+                    href="https://www.tuxae.fr/",
                 ),
                 dbc.NavbarToggler(id="navbar-toggler2"),
                 dbc.Collapse(

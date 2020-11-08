@@ -13,7 +13,6 @@ body = dbc.Container(
                     [
                         html.Img(
                             src="../assets/Logo_Tuxae.png",
-                            id="sncf-image",
                             style={
                                 "height": "100px",
                                 "width": "auto",
@@ -48,10 +47,29 @@ body = dbc.Container(
                     id="title",
                     style={"display": "flex"},
                 ),
+                html.A([html.Div(
+                    [
+                        html.Img(
+                            src="../assets/dash-logo.png",
+                            style={
+                                "height": "70px",
+                                "width": "auto",
+                                "margin-top": "19px",
+                            },
+                        )
+                    ],
+                    className="one-third column",
+                )],
+                href='https://plotly.com/dash/'
+                )
             ],
             id="header",
             className="row flex-display",
-            style={"margin-bottom": "25px", 'display': 'flex'},
+            style={
+                "margin-bottom": "25px",
+                "display": "flex",
+                "justify-content": "space-evenly",
+            },
         ),
         dbc.Row(
             [
