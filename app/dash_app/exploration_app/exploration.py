@@ -11,9 +11,10 @@ import seaborn as sns
 from matplotlib.axes import Axes
 from matplotlib.figure import Figure
 
-from dash_app.utils.navbar import Navbar
+from app.dash_app.utils import Navbar
 
-#
+# ------------------------------------------------------------------------------
+# Constants
 
 all_graphs = ["Scatter_matrix"]
 
@@ -38,8 +39,7 @@ def plot_density(dataframe: List[str], col: str) -> go.Figure:
     return fig
 
 
-def plot_correlation_matrix(dataframe: List[str]) -> Tuple[Figure, Axes]:
-    dataframe = pd.read_json(dataframe)
+def plot_correlation_matrix(dataframe: pd.DataFrame) -> Tuple[Figure, Axes]:
     correlations = dataframe.corr()
     fig, ax = plt.subplots(figsize=(10, 10))
     colormap = sns.diverging_palette(220, 10, as_cmap=True)
@@ -52,7 +52,7 @@ def plot_correlation_matrix(dataframe: List[str]) -> Tuple[Figure, Axes]:
 
 
 def plot_scatter_matrix(
-        dataframe: pd.DataFrame, dim: List[str], target: str
+    dataframe: pd.DataFrame, dim: List[str], target: str
 ) -> go.Figure:
     fig = px.scatter_matrix(dataframe, dimensions=dim, color=target)
     fig.update_layout(autosize=True, width=900, height=900)

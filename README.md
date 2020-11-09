@@ -24,3 +24,15 @@ pip install -r requirements.txt
 ```
 
 Now you're all set, enjoy!
+
+## Slides 
+
+Slides [here](https://docs.google.com/presentation/d/1x9Ptg09OsnQh6TF4IVsxnusni2d9-Tv7mgH92pECGhU/edit#slide=id.p)
+
+## Run the app
+
+To run the app, use:
+
+```
+python -m app
+```

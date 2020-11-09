@@ -7,19 +7,19 @@ import pandas as pd
 from dash.dependencies import Input, Output, State
 from dash.exceptions import PreventUpdate
 
-import dash_app.utils.config as cfg
-from classif_module.data_prep import DataPrep
-from dash_app.exploration_app.exploration import (
+from app.dash_app.utils import config as cfg
+from app.classif_module.data_prep import DataPrep
+from app.dash_app import (
     plot_histogram,
     plot_density,
     Exploration,
-    plot_correlation_matrix,
     plot_scatter_matrix,
 )
-from dash_app.homepage_app.homepage import Homepage
+from app.dash_app.homepage_app.homepage import Homepage
 
 # ------------------------------------------------------------------------------
 # Instantiate the app
+
 
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.SOLAR])
 app.config.suppress_callback_exceptions = True
@@ -137,38 +137,10 @@ def update_figure_col(n_clicks, type_graph, dataframe):
     else:
         pass
 
-    if type_graph == "Correlation_matrix":
-        return plot_correlation_matrix(dataframe), {"display": "flex"}
-    else:
-        dataframe = pd.read_json(dataframe)
-        return (
-            plot_scatter_matrix(
-                dataframe, dim=dataframe.columns.tolist(), target="quality"
-            ),
-            {"display": "flex"},
-        )
-
-
-# ------------------------------------------------------------------------------
-# Running the web-app server
-
-
-if __name__ == "__main__":
-    import argparse
-
-    parser = argparse.ArgumentParser(
-        description="Dash internal workshop Tuxae",
-        formatter_class=argparse.ArgumentDefaultsHelpFormatter,
-    )
-
-    parser.add_argument(
-        "--host", type=str, default="127.0.0.1", help="Host of the server"
-    )
-    parser.add_argument(
-        "--port", type=int, default=8050, help="Port to run the server on"
-    )
-    args = parser.parse_args()
-
-    app.run_server(
-        host=args.host, port=args.port, debug=cfg.DEBUG, dev_tools_hot_reload=cfg.DEBUG
+    dataframe = pd.read_json(dataframe)
+    return (
+        plot_scatter_matrix(
+            dataframe, dim=dataframe.columns.tolist(), target="quality"
+        ),
+        {"display": "flex"},
     )
