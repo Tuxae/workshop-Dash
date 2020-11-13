@@ -1,7 +1,6 @@
 from app.dash_app import app_instance
 from app.dash_app import config as cfg
 
-
 # ------------------------------------------------------------------------------
 # Running the web-app server
 

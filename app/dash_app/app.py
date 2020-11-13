@@ -7,7 +7,6 @@ import pandas as pd
 from dash.dependencies import Input, Output, State
 from dash.exceptions import PreventUpdate
 
-from app.dash_app.utils import config as cfg
 from app.classif_module.data_prep import DataPrep
 from app.dash_app import (
     plot_histogram,
@@ -19,7 +18,7 @@ from app.dash_app.homepage_app.homepage import Homepage
 
 # ------------------------------------------------------------------------------
 # Instantiate the app
-
+from app.dash_app.model_app.modelpage import Modelpage
 
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.SOLAR])
 app.config.suppress_callback_exceptions = True
@@ -52,7 +51,7 @@ def display_page(pathname):
     if pathname == "/exploration":
         return Exploration()
     elif pathname == "/model":
-        pass
+        return Modelpage()
     else:
         return Homepage()
 
@@ -109,7 +108,7 @@ def load_data_and_display(n_clicks):
     [Output("figure_exploration1", "figure"), Output("figure_exploration1", "style")],
     [Input("submit-val-col", "n_clicks")],
     [
-        Input("select_col", "value"),
+        State("select_col", "value"),
         State("select_type_graph1", "value"),
         State("dataframe", "data"),
     ],
@@ -144,3 +143,15 @@ def update_figure_col(n_clicks, type_graph, dataframe):
         ),
         {"display": "flex"},
     )
+
+
+@app.callback(Output("hidden-df", "children"), [Input("dataframe", "data")])
+def update_data(has_data):
+    if has_data is None:
+        df = DataPrep(
+            "http://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-red.csv",
+            ";",
+        ).convert_target()
+        return df.to_json()
+    else:
+        return has_data
